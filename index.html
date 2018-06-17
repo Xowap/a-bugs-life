@@ -1,0 +1,276 @@
+<!doctype html>
+<!--suppress CheckEmptyScriptTag -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Je vous présente BERNARD</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section
+            data-background-image="img/a-bugs-life.jpg"
+            data-background-size="cover"
+        >
+        </section>
+
+        <section>
+            <section>
+                <h1>Origin</h1>
+            </section>
+
+            <section
+                data-background-image="img/first-bug.jpg"
+                data-background-size="cover">
+            </section>
+
+            <section>
+                <h2>In French</h2>
+
+                <p>C'est bugué ? Buggé ? Bugé ? Beugué ?</p>
+
+                <ul class="fragment">
+                    <li>Un <strong>bogue</strong></li>
+                    <li>C'est <strong>bogué</strong></li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Bug vs Feature</h1>
+            </section>
+
+            <section>
+                <h2>Feature</h2>
+
+                <blockquote>
+                    A feature is a small, client-valued function.
+                </blockquote>
+
+                <p>Features are well-defined through tickets, wireframes and
+                prototypes</p>
+
+                <ul>
+                    <li>Display activities in a carousel</li>
+                    <li>Send money to a friend through inline message</li>
+                    <li>...</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Bug</h2>
+
+                <blockquote>
+                    A software bug is an error or fault in a computer program
+                    that causes it to produce an incorrect result.
+                </blockquote>
+
+                <p>Basically, when a feature is not correctly implemented</p>
+            </section>
+
+            <section>
+                <h2>Not a bug</h2>
+
+                <ul>
+                    <li>Not breaking specifications</li>
+                    <li>Seems illogical but was not spec'ed differently</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Cause</h1>
+            </section>
+
+            <section>
+                <h2>Many things can go wrong</h2>
+
+                <img
+                    style="border: none; background: none;"
+                    src="img/server-chain.svg"
+                    alt=""
+                >
+            </section>
+
+            <section>
+                <h3>You <strong>can't</strong> guess the cause</h3>
+                <h4 class="fragment">(hence, don't try)</h4>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1 style="font-size: 140px;">Reproducing</h1>
+            </section>
+
+            <section>
+                <h2>The simplest case(s)</h2>
+
+                <p class="fragment">"Find me an activity for my 9 years old
+                    daughter in Paris that we can do under the rain"</p>
+
+                <p><strong>vs</strong></p>
+
+                <p class="fragment">"Activity"</p>
+            </section>
+
+            <section>
+                <h2>Shortest (but full) path</h2>
+
+                <p class="fragment">Always assume a first-time user</p>
+
+                <ol>
+                    <li>Open the bot</li>
+                    <li>Log in</li>
+                    <li>Type "activity"</li>
+                </ol>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Reporting</h1>
+            </section>
+
+            <section>
+                <h2>Expected parts</h2>
+
+                <ul>
+                    <li><strong>Environment</strong> &mdash; device, operating
+                        system, screen size... Anything relevant</li>
+                    <li><strong>Step-by-step</strong> &mdash; path to
+                        reproduce</li>
+                    <li><strong>Current behavior</strong> &mdash; what you see
+                        (description, highlighted screenshots, ...)</li>
+                    <li><strong>Expected behavior</strong> &mdash; exactly what
+                        you expect instead</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Example (1/3)</h2>
+
+<pre><code data-trim data-noescape>## Step-by-step
+
+1. Connect
+2. Go to a member's page
+3. Open the "Ajouter un échange" window
+4. Fill the form
+5. Click on "Sauvegarder"
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Example (2/3)</h2>
+
+<pre><code data-trim data-noescape>## What happens
+
+Two possible outcomes:
+
+1. Either the button is grayed out
+2. Either when submitting it displays an error.
+   The internal HTTP error is:
+   `{"staff":["Ce champ est obligatoire."]}`
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Example (3/3)</h2>
+
+<pre><code data-trim data-noescape>
+## What is expected
+
+The exchange should be added
+</code></pre>
+            </section>
+
+            <section>
+                <h2>GitLab Template</h2>
+
+                <img src="img/bug-report.png" alt="">
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Anti-patterns</h1>
+            </section>
+
+            <section>
+                <h2>"It doesn't work"</h2>
+
+                <ul class="fragment">
+                    <li>A: I'm going to Paris but it doesn't work</li>
+                    <li>B: How so?</li>
+                    <li>A: Well, I start going but then I'm not there</li>
+                    <li>B: What do you mean?</li>
+                    <li>A: Going. To Paris. Not working.</li>
+                    <li>B: Ok. By car? Plane? Dragon?</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>"Not as in the design"</h2>
+
+                <ul>
+                    <li>What isn't?</li>
+                    <li>What is wrong with it?</li>
+                    <li>How should it be?</li>
+                    <li>What is your screen size? Screen density? Device?</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <h1>Thanks :)</h1>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<!--<script src="js/snowstorm.js"></script>-->
+
+<!--suppress ES6ModulesDependencies -->
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            }
+        ],
+        history: true
+    });
+</script>
+</body>
+</html>
